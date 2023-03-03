@@ -52,7 +52,7 @@ ThemeData getApplicationTheme() {
       bodyLarge: getRegularStyle(color: ColorManager.grey),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: EdgeInsets.all(AppPadding.p8),
+      contentPadding: const EdgeInsets.all(AppPadding.p8),
       hintStyle: getRegularStyle(color: ColorManager.grey1),
       labelStyle: getMediumStyle(color: ColorManager.darkGrey),
       errorStyle: getRegularStyle(color: ColorManager.error),
