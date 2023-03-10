@@ -7,7 +7,7 @@ class SliderObject {
 }
 
 class Customer {
-  int id;
+  String id;
   String name;
   int numOfNotifications;
 
@@ -23,8 +23,8 @@ class Contacts {
 }
 
 class Authentication {
-  Customer customer;
-  Contacts contacts;
+  Customer? customer;
+  Contacts? contacts;
 
   Authentication(this.customer, this.contacts);
 }
