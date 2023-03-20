@@ -1,6 +1,7 @@
 import 'package:tut/data/data_source/remote_data_source.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tut/data/mapper/mapper.dart';
+import 'package:tut/data/network/error_handler.dart';
 import 'package:tut/data/network/network_info.dart';
 import 'package:tut/domain/model.dart';
 import 'package:tut/domain/repository.dart';
@@ -16,18 +17,24 @@ class RepositoryImpl implements Repository {
   @override
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
-      // call the api
-      final response = await _remoteDataSource.login(loginRequest);
-      if (response.status == 0) { // success
-        return Right(response.toDomain());
+      try {
+        // call the api
+        final response = await _remoteDataSource.login(loginRequest);
+        if (response.status == ApiInternalStatus.success) { // success
+          return Right(response.toDomain());
+        }
+        else {
+          return Left(Failure(response.status ?? ApiInternalStatus.failure, response.message ?? ResponseMessage.unknown));
+        }
       }
-      else {
-        return Left(Failure(409, response.message ?? 'An error occurred while connecting to API'));
+      catch (error) {
+        return (Left(ErrorHandler.handle(error).failure));
       }
+      
     }
     else {
       // return connection error
-      return Left(Failure(501, 'Please check your internet connection'));
+      return Left(DataSource.noInternetConnection.getFailure());
     }
   }
   
