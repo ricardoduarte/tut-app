@@ -1,5 +1,5 @@
 import 'package:tut/app/extensions.dart';
-import 'package:tut/domain/model.dart';
+import 'package:tut/domain/model/model.dart';
 import 'package:tut/data/responses/responses.dart';
 
 extension CustomerResponseMapper on CustomerResponse? {

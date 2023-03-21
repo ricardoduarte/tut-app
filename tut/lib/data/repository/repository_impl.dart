@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:tut/data/mapper/mapper.dart';
 import 'package:tut/data/network/error_handler.dart';
 import 'package:tut/data/network/network_info.dart';
-import 'package:tut/domain/model.dart';
-import 'package:tut/domain/repository.dart';
+import 'package:tut/domain/model/model.dart';
+import 'package:tut/domain/repository/repository.dart';
 import 'package:tut/data/request/request.dart';
 import 'package:tut/data/network/failure.dart';
 
